@@ -1,0 +1,14 @@
+# Environment & Dependencies
+venv/
+__pycache__/
+*.pyc
+
+# Database & Laporan
+*.db
+*.xlsx
+
+# Model AI (Sangat Penting agar tidak nolak saat push)
+*.gguf
+
+# OS Files
+.DS_Store

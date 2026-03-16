@@ -1,0 +1,8 @@
+torch>=2.0.0
+torchvision>=0.15.0
+Pillow>=9.0.0
+pandas>=2.0.0
+openpyxl>=3.0.0
+openai>=1.0.0
+llama-cpp-python>=0.2.0
+python-doctr>=0.8.0
