@@ -100,7 +100,7 @@ class AIProcessor:
                 model="deepseek-chat",
                 messages=[
                     {"role": "system", "content": PROMPT_SYSTEM},
-                    {"role": "user", "content": f"Extract:\n{raw_text_trimmed}"},
+                    {"role": "user", "content": f"Extract this text and responsd in Indonesian:\n{raw_text_trimmed}"},
                 ],
                 max_tokens=120,
                 temperature=0.1,
