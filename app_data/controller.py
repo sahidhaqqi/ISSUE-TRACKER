@@ -54,22 +54,52 @@ class DailyIssueLoggerUI:
     # ===== METHOD UNTUK AI & INPUT =====
     def eksekusi_ai_dan_simpan_otomatis(self, gambar_obj):
         mode_pilihan = self.llm_mode.get()
+        
+        def progress_callback(step, message, percent=None):
+            """Callback untuk progress dari AI core"""
+            self.root.after(0, lambda: self._update_ai_progress(step, message, percent))
+        
         def task():
             try:
                 self.tampilkan_status("Memproses dengan AI...")
-                hasil = self.ai.run_pipeline(gambar_obj, mode_pilihan)
+                hasil = self.ai.run_pipeline(
+                    gambar_obj,
+                    mode_pilihan,
+                    progress_callback=progress_callback
+                )
+                
+                self.root.after(0, self.hide_progress)
+                
                 if not hasil:
                     self.root.after(0, lambda: messagebox.showinfo("Info", "Tidak ada teks."))
                 else:
                     tgl = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    database.insert_data(hasil['lokasi'], hasil['issue'], hasil['link'],
-                                         "PROGRESS", "", "", tgl)
+                    database.insert_data(
+                        hasil['lokasi'],
+                        hasil['issue'],
+                        hasil['link'],
+                        "PROGRESS", "", "", tgl
+                    )
                     self.root.after(0, self.muat_data)
+                    
             except Exception as e:
-                self.root.after(0, lambda: messagebox.showerror("Error AI", str(e)))
+                error_msg = str(e)
+                self.root.after(0, self.hide_progress)
+                self.root.after(0, lambda: messagebox.showerror("Error AI", error_msg))
             finally:
                 self.root.after(0, lambda: self.tampilkan_status("Siap"))
-        threading.Thread(target=task, daemon=True).start()
+        
+        threading.Thread(target=task, daemon=True).start()        
+        
+    def _update_ai_progress(self, step, message, percent=None):
+        """Update progress bar dari thread AI"""
+        if not hasattr(self, "progress_frame"):
+            self.show_progress(message, indeterminate=(percent is None))
+        
+        if percent is not None:
+            self.update_progress(percent, message)
+        elif hasattr(self, "progress_label"):
+            self.progress_label.config(text=f"🔄 {message}")
 
     def pilih_file_screenshot(self):
         default_dir = os.path.expanduser("~/Pictures/Screenshots")
@@ -156,3 +186,61 @@ class DailyIssueLoggerUI:
             messagebox.showinfo("Sukses", f"Data berhasil diekspor ({len(df)} baris) ke:\n{path_simpan}")
         except Exception as e:
             messagebox.showerror("Export Error", f"Gagal menyimpan:\n{str(e)}")
+    
+    # ===== PROGRESS BAR METHODS =====
+    def show_progress(self, message="Processing...", indeterminate=True):
+        self.hide_progress()
+
+        self.progress_frame = tk.Frame(self.root, bg="#f0f0f0", height=30)
+        self.progress_frame.grid(
+            row=1,
+            column=0,
+            columnspan=2,
+            sticky="ew",
+            padx=10,
+            pady=(0, 10),
+        )
+
+        self.progress_label = tk.Label(
+            self.progress_frame,
+            text=message,
+            bg="#f0f0f0",
+            font=("Arial", 9),
+        )
+        self.progress_label.pack(side="left", padx=10)
+
+        self.progress_bar = ttk.Progressbar(
+            self.progress_frame,
+            mode="indeterminate" if indeterminate else "determinate",
+            length=200,
+        )
+        self.progress_bar.pack(side="left", padx=10)
+
+        if indeterminate:
+            self.progress_bar.start(10)
+
+        self.progress_percent = tk.Label(
+            self.progress_frame,
+            text="",
+            bg="#f0f0f0",
+            font=("Arial", 9),
+        )
+        self.progress_percent.pack(side="left", padx=5)
+
+        self.root.update_idletasks()
+
+    def update_progress(self, value, message=None):
+        if hasattr(self, "progress_bar"):
+            self.progress_bar["mode"] = "determinate"
+            self.progress_bar["value"] = value
+
+            if message:
+                self.progress_label.config(text=message)
+
+            self.progress_percent.config(text=f"{value}%")
+            self.root.update_idletasks()
+
+    def hide_progress(self):
+        if hasattr(self, "progress_frame"):
+            self.progress_frame.destroy()
+            del self.progress_frame

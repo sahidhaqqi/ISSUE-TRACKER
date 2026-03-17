@@ -7,11 +7,11 @@ DB_PATH = os.path.join(BASE_DIR, "laporan_harian.db")
 MODEL_PATH = os.path.join(BASE_DIR, "SmolLM2-1.7B-Instruct-Q2_K.gguf")
 
 # Obfuscation Lapis 1 untuk API Key
-_p1 = b'c2stY2Fj'
-_p2 = b'MGNiMzA1ZDEx'
-_p3 = b'NDI5Y2E0NjIzYjNi'
-_p4 = b'Y2JhOTAwNTA='
-DEEPSEEK_API_KEY = base64.b64decode(_p1 + _p2 + _p3 + _p4).decode('utf-8')
+_p1 = b"c2stY2Fj"
+_p2 = b"MGNiMzA1ZDEx"
+_p3 = b"NDI5Y2E0NjIzYjNi"
+_p4 = b"Y2JhOTAwNTA="
+DEEPSEEK_API_KEY = base64.b64decode(_p1 + _p2 + _p3 + _p4).decode("utf-8")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 
 PROMPT_SYSTEM = """Output ONLY valid JSON: {"lokasi": "X", "issue": "Y"}
