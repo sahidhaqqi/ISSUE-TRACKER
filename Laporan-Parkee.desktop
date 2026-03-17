@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Daily Issue Logger
+Comment=Aplikasi Laporan Harian Parkee (AI & OCR)
+Exec=/home/sahid/ai/router/Laporan_Parkee_App/venv/bin/python3 /home/sahid/ai/router/Laporan_Parkee_App/app_data/main.py
+Path=/home/sahid/ai/router/Laporan_Parkee_App
+Icon=/home/sahid/ai/router/Laporan_Parkee_App/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;Office;
+StartupNotify=true
+StartupWMClass=Tk

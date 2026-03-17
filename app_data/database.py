@@ -41,3 +41,22 @@ def delete_data(id_db):
     c.execute("DELETE FROM daily_issues WHERE id = ?", (id_db,))
     conn.commit()
     conn.close()
+
+def delete_multiple(ids):
+    """Hapus beberapa data berdasarkan daftar id."""
+    if not ids:
+        return
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    placeholders = ','.join('?' * len(ids))
+    c.execute(f"DELETE FROM daily_issues WHERE id IN ({placeholders})", ids)
+    conn.commit()
+    conn.close()
+
+def delete_all():
+    """Hapus semua data."""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("DELETE FROM daily_issues")
+    conn.commit()
+    conn.close()
