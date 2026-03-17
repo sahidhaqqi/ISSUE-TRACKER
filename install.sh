@@ -47,8 +47,8 @@ fi
 # 4. Install Library Python
 echo -e "${YELLOW}[3/9] Menginstall dependensi Python...${NC}"
 source "$APP_PATH/venv/bin/activate"
-pip install --upgrade pip -q
-pip install -r "$APP_PATH/requirements.txt" -q
+pip install --upgrade pip
+pip install -r "$APP_PATH/requirements.txt"
 echo "   ✅ Semua library terinstall"
 
 # 5. Download Model AI (jika belum ada)
