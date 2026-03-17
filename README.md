@@ -1,6 +1,3 @@
-## 📝 **README.md yang sudah dilengkapi "How to Use"**
-
-```markdown
 # 📋 System Admin - Daily Issue Logger
 
 Aplikasi Desktop (GUI) berbasis Python Tkinter untuk mencatat, mengelola, dan mengekstrak laporan *issue* operasional secara otomatis menggunakan kecerdasan buatan (AI) dan Optical Character Recognition (OCR).
@@ -42,7 +39,6 @@ Aplikasi Desktop (GUI) berbasis Python Tkinter untuk mencatat, mengelola, dan me
 - Detail panel untuk melihat data lengkap
 - Progress bar saat AI bekerja
 
----
 
 ## 🚀 **Cara Instalasi**
 
