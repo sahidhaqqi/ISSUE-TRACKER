@@ -428,26 +428,3 @@ fi
 
 
 
-
-
-echo ""
-echo -e "${GREEN}✅ INSTALASI SELESAI!${NC}"
-echo ""
-echo "📌 Cara menjalankan aplikasi:"
-echo "   1. Klik dua kali shortcut di DESKTOP"
-echo "   atau"
-echo "   2. Cari '$APP_NAME' di MENU APLIKASI"
-echo ""
-echo "📌 Manajemen Backup:"
-echo "   ./backup.sh        - Backup manual"
-echo "   ./restore.sh       - Restore data"
-echo "   ./backup-manager.sh list  - Lihat backup"
-echo ""
-
-# Tanya apakah mau langsung jalankan
-read -p "🚀 Jalankan aplikasi sekarang? (y/n): " -n 1 -r
-echo ""
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Menjalankan aplikasi..."
-    "$APP_PATH/venv/bin/python3" "$APP_PATH/app_data/main.py"
-fi

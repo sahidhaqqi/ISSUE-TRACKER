@@ -2,9 +2,9 @@
 Version=1.0
 Name=Daily Issue Logger
 Comment=Aplikasi Laporan Harian Parkee (AI & OCR)
-Exec=/home/sahid/ai/router/Laporan_Parkee_App/venv/bin/python3 /home/sahid/ai/router/Laporan_Parkee_App/app_data/main.py
-Path=/home/sahid/ai/router/Laporan_Parkee_App
-Icon=/home/sahid/ai/router/Laporan_Parkee_App/icon.png
+Exec=/home/sahid/ai/router/ISSUE-TRACKER/venv/bin/python3 /home/sahid/ai/router/ISSUE-TRACKER/app_data/main.py
+Path=/home/sahid/ai/router/ISSUE-TRACKER
+Icon=/home/sahid/ai/router/ISSUE-TRACKER/icon.png
 Terminal=false
 Type=Application
 Categories=Utility;Office;
