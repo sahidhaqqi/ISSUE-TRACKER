@@ -1,0 +1,27 @@
+
+--- 2026-03-18 07:59:20 (link tidak ditemukan) ---
+- I - M: t CHUD MM n 3331
+ DE
+à :
+:
+- - :
+*
+AANOMOL/HEHGE HOARH :
+selamat pagi om supeng @sahid haqqi punten
+mohon bantuannya untuk pengecekan lebih lanjut
+okasi : metro indah mall (02z)
+issue : pembacaan LPR tidak sesuai
+analisa : kalo di cek by log dan compare by log
+customer transaksi di gate pm4-mbl-02z dengan
+parking slip F91198EF malah membaca nopol
+B1921AAF, yang mana seharusnya pembacaan
+tersebut adalah D15190K
+GLPI: nttps.//parkee-
+ticket.nusa.technology/front/ticket.form.php?
+d=30611
+log :
+nttps:/fs.sistemparkiran.com/download/d7b75193b
+d627db5/#OZIHK9BOTOHT9spCCDRIRg
+CC mas @Amanullah Senior It Support
+02.10
+a Dickyadnan +62 821-1107-7449
