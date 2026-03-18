@@ -107,3 +107,11 @@ class Sidebar:
             width=18,
             fg="red",
         ).pack(side="bottom", pady=20)
+        tk.Button(
+            self.frame,
+            text="📊 Generate Summary",
+            command=self.controller.buka_summary,
+            width=18,
+            bg="#9C27B0",
+            fg="white"
+        ).pack(pady=5)

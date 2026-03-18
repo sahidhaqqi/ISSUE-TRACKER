@@ -244,3 +244,13 @@ class DailyIssueLoggerUI:
         if hasattr(self, "progress_frame"):
             self.progress_frame.destroy()
             del self.progress_frame
+
+    def buka_summary(self):
+        """Buka window summary generator"""
+        try:
+            from summary.summary_gui import SummaryWindow
+            SummaryWindow(self.root, self.all_data, self.list_progress, self.list_supeng)
+        except ImportError as e:
+            messagebox.showerror("Error", f"Module summary tidak ditemukan: {e}")
+        except Exception as e:
+            messagebox.showerror("Error", f"Gagal membuka summary: {e}")
